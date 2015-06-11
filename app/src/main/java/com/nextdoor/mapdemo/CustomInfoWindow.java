@@ -57,10 +57,9 @@ public class CustomInfoWindow implements InfoWindowAdapter {
             whyWontThisImageShowUp(viewHolder.profileIcon, photos.get(marker.getId()));
 //            updateImageViewWithRemoteImage(marker, viewHolder.profileIcon, photos.get(marker.getId()));
         } else if (markerIdIconBlackList.contains(marker.getId())) {
-            viewHolder.profileIcon.setImageResource(R.drawable.placeholder_dog);
-        } else {
-            // Use default static image
             viewHolder.profileIcon.setImageResource(R.drawable.placeholder_cat);
+        } else {
+            viewHolder.profileIcon.setImageResource(R.drawable.placeholder_dog);
         }
         viewHolder.textNDTextTitle.setText(marker.getTitle());
         viewHolder.textNDTextSnippet.setText(marker.getSnippet());
