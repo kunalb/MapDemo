@@ -26,6 +26,9 @@ public class PolygonActivity extends FragmentActivity implements OnMapReadyCallb
         ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
     }
 
+    /**
+     * Add custom polygon click listener.
+     */
     private void setupClickListener() {
         googleMap.setOnPolygonClickListener(new DemoMap.OnPolygonClickListener() {
             @Override
@@ -48,6 +51,9 @@ public class PolygonActivity extends FragmentActivity implements OnMapReadyCallb
         return marker;
     }
 
+    /**
+     * Add polygons to the map.
+     */
     private void addPolygon() {
         Polygon polygon = googleMap.addPolygon(new PolygonOptions()
                 .add(new LatLng(38.88780128710078, -122.20860095153483),

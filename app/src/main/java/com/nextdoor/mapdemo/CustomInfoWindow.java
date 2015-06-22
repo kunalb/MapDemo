@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * Custom implementation of {@link InfoWindowAdapter} to show a profile photo, title and snippet.
  * @author mitali@nextdoor.com (Mitali Gala)
  */
 public class CustomInfoWindow implements InfoWindowAdapter {
@@ -54,8 +55,8 @@ public class CustomInfoWindow implements InfoWindowAdapter {
 
     private void renderInfoWindow(Marker marker, ViewHolder viewHolder) {
         if (photos.containsKey(marker.getId())) {
-            whyWontThisImageShowUp(viewHolder.profileIcon, photos.get(marker.getId()));
-//            updateImageViewWithRemoteImage(marker, viewHolder.profileIcon, photos.get(marker.getId()));
+//            whyWontThisImageShowUp(viewHolder.profileIcon, photos.get(marker.getId()));
+            updateImageViewWithRemoteImage(marker, viewHolder.profileIcon, photos.get(marker.getId()));
         } else if (markerIdIconBlackList.contains(marker.getId())) {
             viewHolder.profileIcon.setImageResource(R.drawable.placeholder_cat);
         } else {
@@ -65,6 +66,9 @@ public class CustomInfoWindow implements InfoWindowAdapter {
         viewHolder.textNDTextSnippet.setText(marker.getSnippet());
     }
 
+    /**
+     * Try loading a photo url using Picasso without a callback.
+     */
     public void whyWontThisImageShowUp(ImageView imageView,
                                        String imageUri) {
         Picasso.with(imageView.getContext())
@@ -73,6 +77,9 @@ public class CustomInfoWindow implements InfoWindowAdapter {
                 .into(imageView);
     }
 
+    /**
+     * Try loading a photo url using picasso and add a callback.
+     */
     public void updateImageViewWithRemoteImage(final Marker marker,
                                                ImageView imageView,
                                                final String imageUri) {
